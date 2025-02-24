@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Return Book</title>
+</head>
+<body>
+    <h1>Return Book</h1>
+    <form method="post" action="{{ url_for('return_book') }}">
+        <label for="transaction_id">Transaction:</label>
+        <select id="transaction_id" name="transaction_id">
+            {% for transaction in transactions %}
+                <option value="{{ transaction.id }}">{{ transaction.book.title }} - {{ transaction.member.name }}</option>
+            {% endfor %}
+        </select><br>
+        <button type="submit">Return Book</button>
+    </form>
+    <a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>
+
+
+

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Management System - Members</title>
+</head>
+<body>
+    <h1>List of Members</h1>
+    <ul>
+        {% for member in members %}
+            <li>{{ member.name }} - Debt: {{ member.debt }}
+                <a href="{{ url_for('update_member', id=member.id) }}">Edit</a>
+                <form method="post" action="{{ url_for('delete_member', id=member.id) }}" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('add_member') }}">Add New Member</a>
+    <a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>

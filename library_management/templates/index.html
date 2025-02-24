@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to Library Management System of Aerele Technology</title>
+</head>
+<body>
+    <h1>Welcome to Library Management System of Aerele Technology</h1>
+    
+    <!-- Search Form -->
+    <form method="get" action="{{ url_for('search') }}">
+        <label for="query">Search for a book:</label>
+        <input type="text" id="query" name="query">
+        <button type="submit">Search</button>
+    </form>
+    
+    <h2>List of Books</h2>
+    <ul>
+        {% for book in books %}
+            <li>{{ book.title }} by {{ book.author }} - Quantity: {{ book.quantity }}
+                <a href="{{ url_for('update_book', id=book.id) }}">Edit</a>
+                <form method="post" action="{{ url_for('delete_book', id=book.id) }}" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('add_book') }}">Add New Book</a>
+
+    <h2>Member Management</h2>
+    <ul>
+        <li><a href="{{ url_for('add_member') }}">Add New Member</a></li>
+        <li><a href="{{ url_for('members') }}">View Members</a></li>
+    </ul>
+
+    <!-- Link to issue and return books -->
+    <h2>Transaction Management</h2>
+    <ul>
+        <li><a href="{{ url_for('issue_book') }}">Issue Book</a></li>
+        <li><a href="{{ url_for('return_book') }}">Return Book</a></li>
+    </ul>
+</body>
+</html>
+
+
